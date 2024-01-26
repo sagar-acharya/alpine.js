@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+
+    <div x-data="{ message : 'Hello World'}">
+        <h1 x-text="message"></h1>
+        <input type="text" x-model="message"/>
+    </div>
+
+    <div x-data="{ message : 'Hello World'}">
+        <h1 x-text="message"></h1>
+        <button @click=" message = 'Hello Sagar'">Click Me</button>
+    </div>
+
+    <div x-data="{ first: 0, second: 0}">
+        <h1 x-text="message"></h1>
+        <input type="text" x-model.number="first"/> + <input type="text" x-model.number="second"/> = <output x-text="first + second"></output>
+    </div>
+</body>
+</html>
