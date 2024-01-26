@@ -1,0 +1,50 @@
+<html>
+<head>
+    <style>
+        .spacing{
+            padding: 1rem; 
+            margin-top:1rem;
+        }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data="{ 
+            open: false, 
+            toggle() { 
+                this.open = ! this.open
+            },
+            /* Computed Properaties (but not cached like vue) */
+            get isOpen() { 
+                return this.open 
+            },
+        }
+    " class="spacing">
+        <button @click="toggle()">Toggle Content using inline data</button>
+     
+        <div x-show="isOpen">
+            Content...
+        </div>
+    </div>
+
+    <div x-data="dropdown" class="spacing">
+        <button @click="toggle">Toggle Content using reusable data</button>
+     
+        <div x-show="open">
+            Content...
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('dropdown', () => ({
+                open: false,
+     
+                toggle() {
+                    this.open = ! this.open
+                },
+            }))
+        })
+    </script>
+</body>
+</html>

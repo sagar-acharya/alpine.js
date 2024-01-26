@@ -1,0 +1,44 @@
+<html>
+<head>
+    <style>
+        .spacing{
+            /* padding: 1rem;  */
+            margin-top:1rem;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data="{ username: 'calebporzio' }" x-cloak>
+        Username: <strong x-text="username"></strong>
+    </div>
+    <div x-data="{ username: '<strong>calebporzio</strong>' }" x-cloak>
+        Username: <span x-html="username"></span>
+    </div>
+    <div x-data="{ colors: ['Red', 'Orange', 'Yellow'] }" x-cloak>
+        <ul>
+            <template x-for="color in colors">
+                <li x-text="color"></li>
+            </template>
+        </ul>
+    </div>
+    <div x-data="{ car: { make: 'Jeep', model: 'Grand Cherokee', color: 'Black' } }" x-cloak>
+        <ul>
+            <template x-for="(value, index) in car">
+                <li>
+                    <span x-text="index"></span>: <span x-text="value"></span>
+                </li>
+            </template>
+        </ul>
+    </div>
+    <div x-data="{ label: 'Hello' }" x-effect="console.log(label)" x-cloak>
+        <button @click="label += ' World!'">Change Message</button>
+    </div>
+    <div x-data class="spacing" x-cloak>
+        <button @click="$refs.text.remove()">Remove Text</button>
+ 
+        <span x-ref="text">Hello 👋</span>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+    <style>
+        .spacing{
+            /* padding: 1rem;  */
+            margin-top:1rem;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data x-cloak class="spacing">
+        <button @click="console.log($el.innerHTML);$el.innerHTML = 'Hello World!'">Replace me with "Hello World!"</button>
+    </div>
+    <div x-data @notify="alert('Hello World!')" class="spacing">
+        <button @click="$dispatch('notify')">
+            Notify
+        </button>
+    </div>
+    <div x-data @notify="alert($event.detail.message)" class="spacing">
+        <button @click="$dispatch('notify', { message: 'Custom Message!' })">
+            Notify With Custom Message
+        </button>
+    </div>
+    <div
+        x-data="{ title: 'Hello' }"
+        @set-title.window="title = $event.detail"
+        class="spacing"
+    >
+        <h1 x-text="title"></h1>
+    </div>
+    
+    <div x-data class="spacing">
+        <button @click="$dispatch('set-title', 'Hello World!')">Dispatch to other components</button>
+    </div>
+    <div x-data="{ title: 'Hello' }" class="spacing">
+        <input type="text" x-model="title">            
+            <!-- After the button is pressed, `x-model` will catch the bubbling "input" event, and update title. -->
+        <button @click="$dispatch('input', 'Hello World!')">Click me</button>
+    </div>
+</body>
+</html>
