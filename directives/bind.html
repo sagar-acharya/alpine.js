@@ -1,0 +1,32 @@
+<html>
+<head>
+    <style>
+        .spacing{
+            padding: 1rem; 
+            margin-top:1rem;
+        }
+        .hidden{
+            display:none;
+        }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data="{ placeholder: 'Type here...' }" class="spacing">
+        <input type="text" x-bind:placeholder="placeholder">
+        <input type="text" :placeholder="placeholder">
+    </div>
+
+    <div x-data="{ open: false }" class="spacing">
+        <button x-on:click="open = ! open">Toggle Dropdown</button>
+     
+        <div :class="open ? '' : 'hidden'" class="spacing">
+            Dropdown Contents...
+        </div>
+
+        <div class="hidden" :class="{ 'hidden': ! open }">
+            HIDDEN
+        </div>
+    </div>
+</body>
+</html>
